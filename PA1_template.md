@@ -1,16 +1,12 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ### Load and process the data:
 
 - Download and unzip the data file from https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip
 - Set working directory
-```{r}
+
+```r
 library(knitr)
 setwd("~/Documents/Coursera_Data_Science/05_Reprod_Research/1_Proj1")
 data<- read.csv("activity.csv")
@@ -21,23 +17,38 @@ Instructions:
 - Ignore the missing values in the dataset.
 
 ####     1. Calculate the total number of steps taken per day
-```{r}
+
+```r
 data$date <- as.Date(data$date,"%Y-%m-%d")
 Steps_per_day <- tapply(data$steps, data$date, sum)
 ```
 
 ####     2. Make a histogram of the total number of steps taken each day
 
-```{r}
+
+```r
 library(lattice)
 hist(Steps_per_day, xlab="Number of Steps Per Day",ylab="Days", main="Total Number of Steps Taken Per Day", col="green")
 ```
 
-####     3. Calculate and report the mean and median of the total number of steps taken per day
-```{r}
-mean(Steps_per_day,na.rm=TRUE)
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
+####     3. Calculate and report the mean and median of the total number of steps taken per day
+
+```r
+mean(Steps_per_day,na.rm=TRUE)
+```
+
+```
+## [1] 10766.19
+```
+
+```r
 median(Steps_per_day,na.rm=TRUE)
+```
+
+```
+## [1] 10765
 ```
 
 ### Q2) What is the average daily activity pattern?
